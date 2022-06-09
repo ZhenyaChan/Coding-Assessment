@@ -1,17 +1,18 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const ResortItem = ({title,image,price}) => {
+const ResortItem = (props) => {
   return  (
 
     <div className="resort-card">
 
-      <a href = "/"> 
-          <img src={image} alt=""/>   
-      </a> 
+      <Link to = {`/resorts/${props.id}`}> 
+          <img src={props.image} alt=""/>   
+      </Link> 
 
       <div className="resortContent">
-          <h3>{title}</h3>
-          <p>${price} per night</p>
+          <h3>{props.title}</h3>
+          <p>${props.price} per night</p>
       </div>
 
   </div>

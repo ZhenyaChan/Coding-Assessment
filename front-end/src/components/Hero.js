@@ -7,8 +7,7 @@ const Hero = () => {
     <section id="hero-section">
     <div className="container">
         <h1>
-            Take A Post Covid Vacation<br/>
-            To Anywhere In The World
+            Feel belonged anywhere<br/>
         </h1>
     </div>  
 </section>

@@ -1,28 +1,33 @@
 import '../assets/css/App.css';
 import '../assets/css/utilities.css';
-
-
-import Header from "./Header";
-import Footer from "./Footer";
-import Hero from "./Hero";
-import ResortList from "./ResortList"
-
 import React from 'react';
 
-const App = () => 
-{
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+import HomePage from '../pages/HomePage';
+import AboutPage from '../pages/AboutPage';
+import ResortListingPage from '../pages/ResortListingPage';
+import LoginPage from '../pages/LoginPage';
+import RegistrationPage from '../pages/RegistrationPage';
+import ResortDescriptionPage from "../pages/ResortDescriptionPage"
+
+const App = () => {
   return (
-      <div className="grid grid-row-3" id="main-container">
-
-        <Header/>
-        <main>
-          <Hero/>
-          <ResortList/>
-        </main>
-        <Footer/>
-
-    </div>
-    );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="resorts" element={<ResortListingPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="registration" element={<RegistrationPage />} />
+        <Route path="resorts/:id" element={<ResortDescriptionPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;

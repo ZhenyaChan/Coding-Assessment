@@ -1,29 +1,39 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import ResortItem from "./ResortItem";
 
 
 const ResortList = () => {
 
+  const [resorts, setResorts] = useState([{
+    id: 0,
+    title: "",
+    price: 0,
+    image: null
+  }]);
+
+  useEffect(()=>{
+    const URL = "http://localhost:5000/resorts";
+
+    fetch(URL)
+    .then(response=>response.json())
+    .then(json=>{
+      setResorts(json.results);
+    })
+    .catch(err=>console.log(err));
+
+  }, []);
 
   return (
     <section id="section-resort-list">
-      <div className= "container">
-      
-          <h1>Featured Resort</h1>
+      <div className="container">
 
-          <div className="grid grid-gap-1 grid-row-gap-2 grid-col-4">
+        <h1>Featured Resort</h1>
 
-               <ResortItem title="Resort 1" image ="https://resort-destination-app.s3.us-east-2.amazonaws.com/resort1.webp" price={500} />
-               <ResortItem title="Resort 2" image ="https://resort-destination-app.s3.us-east-2.amazonaws.com/resort2.webp" price={150} />
-               <ResortItem title="Resort 3" image ="https://resort-destination-app.s3.us-east-2.amazonaws.com/resort3.webp" price={220} />
-               <ResortItem title="Resort 4" image ="https://resort-destination-app.s3.us-east-2.amazonaws.com/resort4.webp" price={300} />
-
-  
-          </div>
-
+        <div className="grid grid-gap-1 grid-row-gap-2 grid-col-4">
+          {resorts.map(resort=>(<ResortItem id={resort._id} title={resort.title} image={resort.imageSrc} price={resort.price} />))}
+        </div>
       </div>
-
     </section>
 
   );
